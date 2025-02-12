@@ -2,11 +2,14 @@ import React from 'react';
 
 interface Props {
     children: React.ReactNode;
+    square?: boolean;
   }
 
-const Button: React.FC<Props> = ({children}) => {
+const Button: React.FC<Props> = ({ children, square }) => {
   return (
-    <button className="bg-cyan text-white py-3 px-10 md:py-2 md:px-6 rounded-4xl font-poppins text-lg md:text-sm hover:bg-cyan/50 hover:cursor-pointer transition duration-300 ease-in-out poppins-bold">
+    <button className={`bg-cyan text-white font-poppins  hover:bg-cyan/50 hover:cursor-pointer transition duration-300 ease-in-out poppins-bold
+    ${square ? "w-full md:w-40 rounded-sm py-1 px-3 lg:py-2 lg:px-6 text-base lg:text-lg" : "rounded-4xl py-3 px-10 md:py-2 md:px-6 text-lg md:text-sm"}
+    `}>
         {children}
     </button>
   );
