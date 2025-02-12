@@ -1,12 +1,12 @@
 import React from 'react';
 // Components
-import Wrapper from './Wrapper';
+import Wrapper from '../Wrapper';
 import Feature from './Feature';
 import DividerStatisticLine from './DividerStatisticLine';
 // Images
-import iconBrandRecognition from "../assets/images/icon-brand-recognition.svg";
-import iconDetailedRecords from "../assets/images/icon-detailed-records.svg";
-import iconFullyCustomizable from "../assets/images/icon-fully-customizable.svg";
+import iconBrandRecognition from "../../assets/images/icon-brand-recognition.svg";
+import iconDetailedRecords from "../../assets/images/icon-detailed-records.svg";
+import iconFullyCustomizable from "../../assets/images/icon-fully-customizable.svg";
 
 const Statistics: React.FC = () => {
   return (

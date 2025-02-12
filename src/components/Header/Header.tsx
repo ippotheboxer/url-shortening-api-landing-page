@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 //Images and icons
-import brandLogo from "../assets/images/logo.svg";
+import brandLogo from "../../assets/images/logo.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 // Components
-import Button from "./Button";
+import Button from "../Button";
 import NavbarItem from './NavbarItem';
-import Wrapper from './Wrapper';
+import Wrapper from '../Wrapper';
 
 const Header:React.FC = () => {
     const [isDesktop, setDesktop] = useState(window.innerWidth > 768);

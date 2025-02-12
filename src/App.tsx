@@ -1,9 +1,10 @@
 import React from "react";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import Hero from "./components/Hero";
 import InputURL from "./components/InputURL";
-import Statistics from "./components/Statistics";
+import Statistics from "./components/Statistics/Statistics";
 import BoostLinks from "./components/BoostLinks";
+import Footer from "./components/Footer/Footer";
 
 const App:React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const App:React.FC = () => {
         <Statistics />
       </div>
       <BoostLinks />
+      <Footer />
     </main>
   )
 }
