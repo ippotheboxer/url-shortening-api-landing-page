@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
   return (
     <div className='bg-very-dark-violet'>
         <Wrapper>  
-            <div className='font-poppins flex flex-col md:flex-row items-center text-center md:text-start md:items-start md:justify-around'>
+            <div className='font-poppins flex flex-col md:flex-row items-center text-center md:text-start md:items-start md:justify-between'>
             <h2 className='text-3xl poppins-bold text-white pb-8 md:pb-0'>Shortly</h2>
             <FooterList title='Features'>
                 <FooterTag>Link Shortening</FooterTag>
