@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react';
 import Button from '../Button';
 import Wrapper from '../Wrapper';
 import { shortenLink } from '../../api/shortenLink';
-import LinkListItem from './LinkListItem';
 
 const InputURL: React.FC = () => {
   const [url, setUrl] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [urlLinks, setUrlLinks] = useState<any[]>([]);
+  const [activeButtonIndex, setActiveButtonIndex] = useState<number>(0);
 
   useEffect(() => {
     const past_url_links = JSON.parse(localStorage.getItem('urlItems') || "[]");
-    setUrlLinks(past_url_links);
+    const latest3links = past_url_links.slice(Math.max(past_url_links.length - 3, 0));
+    setUrlLinks(latest3links);
   }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -32,13 +33,14 @@ const InputURL: React.FC = () => {
       localStorage.setItem('urlItems', newItems);
 
       const past_url_links = JSON.parse(localStorage.getItem('urlItems') || "[]");
-      setUrlLinks(past_url_links);
+      const latest3links = past_url_links.slice(Math.max(past_url_links.length - 3, 0));
+      setUrlLinks(latest3links);
       }
   }
 
   return (
     <Wrapper>
-      <div className='mb-6 -mt-30 z-1 mx-4 md:mx-0 rounded-md p-8 md:p-12 bg-dark-violet bg-[url(assets/images/bg-shorten-mobile.svg)] md:bg-[url(assets/images/bg-shorten-desktop.svg)] bg-center bg-cover'>
+      <div className='mb-12 -mt-30 z-1 mx-4 md:mx-0 rounded-md p-8 md:p-12 bg-dark-violet bg-[url(assets/images/bg-shorten-mobile.svg)] md:bg-[url(assets/images/bg-shorten-desktop.svg)] bg-center bg-cover'>
         <form onSubmit={handleSubmit} className='flex flex-col md:flex-row items-center'>
             <input
               value={url}
@@ -50,8 +52,25 @@ const InputURL: React.FC = () => {
           </form>
           {error !== "" && <p className='font-poppins text-sm pt-2 italic text-red'>{error}</p>}
           </div>
+
           {urlLinks.map((item, index) => 
-          <LinkListItem key={index} givenURL={item.url} shortenedURL={item.shortenedURL} />
+          <div key={index} className='mb-4 mt-6 '>
+          <div className='bg-white rounded-sm flex md:flex-row flex-col md:items-center justify-between font-poppins poppins-medium md:text-sm lg:text-base'>
+              <h4 className='lg:px-6 lg:py-3 px-3 py-2 text-black border-gray/20 border-b-2 md:border-0'>{item.url}</h4>
+              <div className='lg:px-6 lg:py-3 px-3 py-2 flex md:flex-row flex-col md:items-center'>
+                  <h4 className='pb-2 md:pb-0 text-cyan pr-8'>{item.shortenedURL}</h4>
+                  <button 
+                    className={`${index === activeButtonIndex ? "bg-dark-violet py-2 px-3" : "bg-cyan hover:bg-[#9ce2e2] py-2 px-6"} font-poppins text-white poppins-bold rounded-sm hover:cursor-pointer w-10/12 mb-2 md:mb-0 transition duration-300 ease-in-out`}
+                    onClick={() =>  { 
+                      navigator.clipboard.writeText(item.shortenedURL);
+                      setActiveButtonIndex(index);
+                      }}
+                    >
+                    {index === activeButtonIndex ? (<>Copied!</>) : (<>Copy</>)}
+                  </button>
+                </div>
+          </div>
+          </div>
           )}
     </Wrapper>
   );
