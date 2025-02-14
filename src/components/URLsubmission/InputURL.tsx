@@ -7,7 +7,7 @@ const InputURL: React.FC = () => {
   const [url, setUrl] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [urlLinks, setUrlLinks] = useState<any[]>([]);
-  const [activeButtonIndex, setActiveButtonIndex] = useState<number>(0);
+  const [activeButtonIndex, setActiveButtonIndex] = useState<number>(-1);
 
   useEffect(() => {
     const past_url_links = JSON.parse(localStorage.getItem('urlItems') || "[]");
